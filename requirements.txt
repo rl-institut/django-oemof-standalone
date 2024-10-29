@@ -1,0 +1,4 @@
+django==5.0.9  # pyup: < 5.1  # https://www.djangoproject.com/
+psycopg2-binary==2.9.10
+oemof.tabular==0.0.5
+git+https://github.com/rl-institut/django-oemof
