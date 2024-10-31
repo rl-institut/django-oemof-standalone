@@ -1,4 +1,11 @@
 from setup import init_django
+from preprocess import remove_components
+
+try:
+    VISIO = True
+    from oemof_visio import ESGraphRenderer
+except ModuleNotFoundError:
+    VISIO = False
 
 OEMOF_DATAPACKAGE = "dispatch"
 OEMOF_PARAMETERS = {
@@ -16,6 +23,14 @@ def test_model_hook(scenario, model, request):
     return model
 
 def test_es_hook(scenario, es, request):
+    remove_components(["bus1"])
+
+    if VISIO is True:
+        gr = ESGraphRenderer(
+            energy_system=es, legend=True, filepath="test_es", img_format="png"
+        )
+        gr.render()
+
     return es
 
 
