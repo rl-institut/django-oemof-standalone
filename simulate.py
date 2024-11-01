@@ -9,7 +9,7 @@ except ModuleNotFoundError:
 
 OEMOF_DATAPACKAGE = "dispatch"
 OEMOF_PARAMETERS = {
-    "electricity_demand": 7000
+    "electricity_demand": 8000
 }
 
 
@@ -23,7 +23,7 @@ def test_model_hook(scenario, model, request):
     return model
 
 def test_es_hook(scenario, es, request):
-    remove_components(["bus1"])
+    remove_components(es, ["wind"])
 
     if VISIO is True:
         gr = ESGraphRenderer(
